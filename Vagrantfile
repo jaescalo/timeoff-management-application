@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   # Use Ubuntu 20.10 to build the VM
   config.vm.box = "bento/ubuntu-20.10"
   # Use local Ubuntu box to build the VM
-  config.vm.box_url = "./ubuntu2010.box"
+  config.vm.box_url = "/Users/jaescalo/Google Drive/DevOps/Tools/ubuntu2010.box"
   end
 
   config.vm.define "timeoff-application" do |timeoff|
