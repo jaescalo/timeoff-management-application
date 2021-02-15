@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
     timeoff.vm.provision "ansible" do |ansible|
       ansible.playbook="playbook.yaml"
       ansible.verbose = "v"
+      ansible.raw_arguments  = "--ask-vault-pass"
     end
   end
 end

@@ -5,7 +5,7 @@
   tasks: 
 
   - name: Read secret file
-    include_vars: "secret.yaml"
+    include_vars: "/Users/jaescalo/secret.yaml"
     register: output
 
   - debug: var=output.stdout_lines
