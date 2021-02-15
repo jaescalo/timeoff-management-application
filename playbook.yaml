@@ -1,0 +1,44 @@
+- name: Playbook to install TOMA app
+  hosts: all
+  become: true
+  become_user: root
+  tasks: 
+
+  - name: Update apt-get repo and cache
+    apt: 
+      #upgrade: yes
+      update_cache: yes 
+
+  - name: Ansible apt install nodejs
+    apt:
+      name: nodejs
+
+  - name: Ansible apt install npm
+    apt:
+      name: npm
+
+  - name: Ansible apt install sqlite
+    apt:
+      name: sqlite3
+
+  - name: Download TOMA artifact from Artifactory
+    get_url:
+      url: https://jaescalo.jfrog.io/artifactory/timeoff-management-application/timeoff-management-application.tgz
+      headers: {'X-JFrog-Art-Api':'AKCp8ihAr8yhVQKtU4MvCLDpkzrAA1WL72xZZLXFeqNnZh7wkAiYJ9fPHeMrGyXyoSvdUSNzQ'}
+      dest: ./
+
+  - name: Extract Artifact
+    unarchive:
+      src: timeoff-management-application.tgz
+      dest: ./
+      remote_src: yes
+
+  - name: Install the TOMA app
+    shell:
+      cmd: sudo npm install
+      chdir: timeoff-management-application/
+
+  - name: Run the TOMA app
+    shell:
+      cmd: nohup sudo npm start
+
