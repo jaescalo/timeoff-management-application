@@ -37,8 +37,14 @@
     shell:
       cmd: sudo npm install
       chdir: timeoff-management-application/
+  
+  - debug: var=out.stdout_lines
 
   - name: Run the TOMA app
     shell:
-      cmd: nohup sudo npm start
+      cmd: sudo nohup npm start 1>/dev/null 2>&1 &
+      chdir: timeoff-management-application/
+    register: out
+
+  - debug: var=out.stdout_lines
 

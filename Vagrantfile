@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "timeoff-application" do |timeoff|
     # Forwrd port 3000 which is used by the timeoff app
-    timeoff.vm.network "forwarded_port", guest: 3000, host: 3001
+    timeoff.vm.network "forwarded_port", guest: 3000, host: 3000
 
     # Provision the app and requirements with Ansible
     timeoff.vm.provision "ansible" do |ansible|
