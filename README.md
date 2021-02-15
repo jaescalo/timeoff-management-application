@@ -32,20 +32,20 @@ A previously generated Docker image is available to Jenkins for running the test
 2. Installs all the dependencies (nodejs, npm, sqlite, phantomjs).
 
 To locally generate the image
-'''
+```
 docker build --tag timeoff:latest .
-'''
+```
 
 This step is not part of the Jenkins pipeline but can be integrated in next releases.
 
 From Jenkins CICD the start and test application commands are executed and then a cleanup is performed.
 
-'''
+```
 docker run -d --name toma timeoff nohup npm start 1>/dev/null 2>&1 &
 docker exec -it toma npm test
 docker stop toma
 docker rm toma
-'''
+```
 ### JFrog Artifactory
 An online account is required as well as a repository for the artifacts. Steps 4 & 5 are part of the Jenkins Pipeline.
 1. In JFrog Artifactory create a new npm repository.
@@ -63,9 +63,9 @@ From the Vagrantfile the following steps take place
 
 This step is striggered from Jenkins by submitting:
 
-'''
+```
 vagrant up
-'''
+```
 
 ### Ansible
 Ansible's playbook.yaml contains the instructions to provision the virtual machine deployed through vagrant.
