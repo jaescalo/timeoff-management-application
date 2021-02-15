@@ -16,6 +16,8 @@ Vagrant.configure("2") do |config|
     # Provision the app and requirements with Ansible
     timeoff.vm.provision "ansible" do |ansible|
       ansible.playbook="playbook.yaml"
+      ansible.verbose = "v"
+      ansible.raw_arguments = "--vault-password-file=/Users/jaescalo/secret.yaml"
     end
   end
 end

@@ -4,6 +4,12 @@
   become_user: root
   tasks: 
 
+  - name: Read secret file
+    include_vars: "secret.yaml"
+    register: output
+
+  - debug: var=output.stdout_lines
+
   - name: Update apt-get repo and cache
     apt: 
       #upgrade: yes
@@ -24,7 +30,7 @@
   - name: Download TOMA artifact from Artifactory
     get_url:
       url: https://jaescalo.jfrog.io/artifactory/timeoff-management-application/timeoff-management-application.tgz
-      headers: {'X-JFrog-Art-Api':'AKCp8ihAr8yhVQKtU4MvCLDpkzrAA1WL72xZZLXFeqNnZh7wkAiYJ9fPHeMrGyXyoSvdUSNzQ'}
+      headers: {'X-JFrog-Art-Api':'"{{ secret.api_token }}"'}
       dest: ./
 
   - name: Extract Artifact
