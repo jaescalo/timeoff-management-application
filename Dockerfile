@@ -1,39 +1,33 @@
 # -------------------------------------------------------------------
-# Minimal dockerfile from alpine base
+# Dockerfile for Ubuntu 20.10 and all dependencies for required to 
+# test the timeoff-management-application with mocha
 #
 # Instructions:
 # =============
-# 1. Create an empty directory and copy this file into it.
+# 1. Start the container with the app running
+#    docker run -di --name toma timeoff nohup npm start 1>/dev/null 2>&1 &
 #
-# 2. Create image with: 
-#	docker build --tag timeoff:latest .
-#
-# 3. Run with: 
-#	docker run -d -p 3000:3000 --name alpine_timeoff timeoff
-#
-# 4. Login to running container (to update config (vi config/app.json): 
-#	docker exec -ti --user root alpine_timeoff /bin/sh
+# 2. Execute the npm test
+#	 docker exec -it --name toma npm test
 # --------------------------------------------------------------------
-FROM alpine:3.8
+FROM ubuntu:20.10
 
 EXPOSE 3000
 
-LABEL org.label-schema.schema-version="1.0"
-LABEL org.label-schema.docker.cmd="docker run -d -p 3000:3000 --name alpine_timeoff"
-
-RUN apk add --no-cache \
-    git \
-    make \
-    nodejs npm \
-    python \
-    vim
+USER root
+RUN apt update
+RUN apt upgrade -y
+RUN apt install -y nodejs
+RUN apt install -y npm
+RUN apt install -y sqlite3
+RUN apt install -y wget
     
-RUN adduser --system app --home /app
-USER app
-WORKDIR /app
-RUN git clone https://github.com/timeoff-management/application.git timeoff-management
+
 WORKDIR /app/timeoff-management
+ADD  . /app/timeoff-management
 
 RUN npm install
 
-CMD npm start
+RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+RUN tar -xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 -C /usr/local/share/
+RUN ln -s /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/
