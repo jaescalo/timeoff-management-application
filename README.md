@@ -1,4 +1,3 @@
-
 # Release Manager for TimeOff.Management App
 
 This excercise demo deploys the [Timeoff Management Application](https://github.com/timeoff-management/application) in a virtual infrastructure in an automated fashiOn utilizing Jenkins CI/CD.
@@ -17,7 +16,7 @@ Most of the tools need to be locally installed for this demo with the exception 
 
 ### Jenkins CI/CD
 Requires the "Artifactory plugin" to upload and download artifacts to JFrog cloud repositories.
-The pipeline code is available in the Jenkinsfile. It follows these steps:
+The pipeline code is available in the [Jenkinsfile](https://github.com/jaescalo/timeoff-management-application/blob/master/Jenkinsfile). It follows these steps:
 1. Checkout from the forked Github repository
 2. Tests the application with mocha (part of the npm project). The test environment will run in a Docker container.
 3. Once all the tests pass the code is good and the artifact is created.
@@ -27,7 +26,7 @@ The pipeline code is available in the Jenkinsfile. It follows these steps:
 
 
 ### Docker
-A previously generated Docker image is available to Jenkins for running the tests. This image is built based on the Dockerfile. The flow is as follows:
+A previously generated Docker image is available to Jenkins for running the tests. This image is built based on the [Dockerfile](https://github.com/jaescalo/timeoff-management-application/blob/master/Dockerfile). The flow is as follows:
 1. Builds an image based on Ubuntu 20.10
 2. Installs all the dependencies (nodejs, npm, sqlite, phantomjs).
 
@@ -56,7 +55,7 @@ An online account is required as well as a repository for the artifacts. Steps 4
 
 ### Vagrant
 A locally ubuntu-20.10 box must be downloaded and available (for the sake of time during the demo).
-From the Vagrantfile the following steps take place
+From the [Vagrantfile](https://github.com/jaescalo/timeoff-management-application/blob/master/Vagrantfile) the following steps take place
 1. Builds an image based on Ubuntu 20.10
 2. Opens port 3000 (default port for the app)
 3. Uses Ansible for provisioning.
@@ -68,7 +67,7 @@ vagrant up
 ```
 
 ### Ansible
-Ansible's playbook.yaml contains the instructions to provision the virtual machine deployed through vagrant.
+Ansible's [playbook.yaml](https://github.com/jaescalo/timeoff-management-application/blob/master/playbook.yaml) contains the instructions to provision the virtual machine deployed through vagrant.
 1. Installs all the dependencies (nodejs, npm, sqlite, phantomjs).
 2. Downloads the artifact from JFrog and unpacks it.
 3. Install the application.
