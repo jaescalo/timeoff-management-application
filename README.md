@@ -2,6 +2,8 @@
 
 This excercise demo deploys the [Timeoff Management Application](https://github.com/timeoff-management/application) in a virtual infrastructure in an automated fashiOn utilizing Jenkins CI/CD.
 
+![Release Manager Diagram](images/ReleaseManagerrFlow.jpg)
+
 ## Requirements
 * [Github](https://github.com) Repository forked from the official [Timeoff Management Application](https://github.com/timeoff-management/application) repository.
 * [Jenkins](https://www.jenkins.io/download/)
@@ -74,3 +76,9 @@ Ansible's [playbook.yaml](https://github.com/jaescalo/timeoff-management-applica
 4. Executes the application.
 
 At this point open a browser and point it to http://localhost:3000/
+
+
+
+Improvements
+Parametrize folders name
+Hide APIs (this should be top priority). But for now for demo purposes 
