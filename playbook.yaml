@@ -24,7 +24,7 @@
   - name: Download TOMA artifact from Artifactory
     get_url:
       url: https://jaescalo.jfrog.io/artifactory/timeoff-management-application/timeoff-management-application.tgz
-      headers: {'X-JFrog-Art-Api':'AKCp8ihAr8yhVQKtU4MvCLDpkzrAA1WL72xZZLXFeqNnZh7wkAiYJ9fPHeMrGyXyoSvdUSNzQ'}
+      headers: {'X-JFrog-Art-Api':'INSERT_JFROG_API_KEY_HERE'}
       dest: ./
 
   - name: Extract Artifact
