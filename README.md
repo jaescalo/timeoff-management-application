@@ -84,5 +84,5 @@ Ansible's [playbook.yaml](https://github.com/jaescalo/timeoff-management-applica
 At this point open a browser and point it to http://localhost:3000/
 
 ## Future Improvements
-* Mask any API tokens. This is high priority.  
 * Parametrize builds for use with other apps.
+* Change the docker container to Alpine for less storage consumption.
