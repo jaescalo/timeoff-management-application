@@ -2,6 +2,12 @@
 
 This excercise demo deploys the [Timeoff Management Application](https://github.com/timeoff-management/application) in a virtual infrastructure in an automated fashiOn utilizing Jenkins CI/CD.
 
+The Jenkins orchestration flow:
+1. Triggers the build on a Github commit. 
+2. Tests the application before deployment.
+3. Uploads the artifact.
+4. Deploys and provisions a virtual machine which runs the application.
+
 ![Release Manager Diagram](images/ReleaseManagerrFlow.jpg)
 
 ## Requirements
@@ -77,8 +83,6 @@ Ansible's [playbook.yaml](https://github.com/jaescalo/timeoff-management-applica
 
 At this point open a browser and point it to http://localhost:3000/
 
-
-
-Improvements
-Parametrize folders name
-Hide APIs (this should be top priority). But for now for demo purposes 
+## Future Improvements
+* Mask any API tokens. This is high priority.  
+* Parametrize builds for use with other apps.
